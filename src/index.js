@@ -31,7 +31,7 @@ class Dialog extends React.Component {
       body: null,
       showModal: false,
       actions: [],
-      bsSize: undefined,
+      size: undefined,
       onHide: null,
       prompt: null
     }
@@ -58,7 +58,7 @@ class Dialog extends React.Component {
    * @param options.title The title of dialog.
    * @param options.body The body of message.
    * @param options.actions {DialogAction} The choices for presenting to user.
-   * @param options.bsSize {[null, 'medium', 'large', 'small']} The width size for dialog.
+   * @param options.size {[null, 'md', 'lg', 'sm']} The width size for dialog.
    * @param options.onHide {function} The method to call when the dialog was closed by clicking background.
    * @param options.prompt {[null, Prompt]} Use prompt for text input or password input.
    */
@@ -82,15 +82,15 @@ class Dialog extends React.Component {
   /**
    * Show message dialog This is similar to `window.alert`.
    * @param body The body of message.
-   * @param bsSize {[null, 'medium', 'large', 'small']} The width size for dialog.
+   * @param size {[null, 'md', 'lg', 'sm']} The width size for dialog.
    */
-  showAlert (body, bsSize = undefined) {
+  showAlert (body, size = undefined) {
     const options = {
       body: body,
       actions: [
         Dialog.SingleOKAction()
       ],
-      bsSize: bsSize
+      size: size
     }
     this.show(options)
   }
@@ -130,9 +130,9 @@ class Dialog extends React.Component {
   }
 
   render () {
-    const size = (typeof this.state.bsSize) === 'undefined' ? 'small' : (this.state.bsSize === 'medium' ? null : this.state.bsSize)
+    const size = (typeof this.state.size) === 'undefined' ? 'sm' : (this.state.size === 'md' ? null : this.state.size)
     return (
-      <Modal show={this.state.showModal} onHide={this.onHide} bsSize={size}>
+      <Modal show={this.state.showModal} onHide={this.onHide} size={size}>
         {
           this.state.title && (
             <Modal.Header>
